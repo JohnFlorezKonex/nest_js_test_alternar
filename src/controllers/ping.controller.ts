@@ -1,13 +1,13 @@
 import { Controller, Get } from '@nestjs/common';
-import { AlternarService } from 'src/services/alternar.service';
+import { PingService } from 'src/services/ping.service';
 
 @Controller()
 export class PingController {
-  constructor(private readonly alternarService: AlternarService) {}
+  constructor(private readonly pingService: PingService) {}
 
   @Get('ping')
   async test(): Promise<any> {
-    const testApi = await this.alternarService.test();
-    return { result: 'pong 6', testApi };
+    const testApi = await this.pingService.test();
+    return { result: 'pong 7', testApi };
   }
 }

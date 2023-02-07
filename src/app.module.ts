@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { AlternarController } from './controllers/alternar.controller';
-import { AlternarService } from './services/alternar.service';
+// import { AlternarController } from './controllers/alternar.controller';
+// import { AlternarService } from './services/alternar.service';
 
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -14,6 +14,7 @@ import {
 } from './repositories/services';
 import { HttpModule } from '@nestjs/axios';
 import { PingController } from './controllers/ping.controller';
+import { PingService } from './services/ping.service';
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
@@ -30,8 +31,14 @@ import { PingController } from './controllers/ping.controller';
     ]),
     HttpModule,
   ],
-  controllers: [AlternarController, PingController],
-  providers: [AlternarService],
+  controllers: [
+    // AlternarController,
+    PingController,
+  ],
+  providers: [
+    // AlternarService,
+    PingService,
+  ],
 })
 export class AppModule {
   static port: number;
