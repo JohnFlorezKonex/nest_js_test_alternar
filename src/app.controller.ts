@@ -12,6 +12,6 @@ export class AppController {
 
   @Get('ping')
   ping(): string {
-    return 'pong test 2';
+    return 'pong test 3';
   }
 }
