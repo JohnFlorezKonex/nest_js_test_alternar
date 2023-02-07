@@ -11,6 +11,6 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 export class AppModule {
   static port: number;
   constructor(private readonly configService: ConfigService) {
-    AppModule.port = +this.configService.get('PORT');
+    AppModule.port = this.configService.get('PORT');
   }
 }
