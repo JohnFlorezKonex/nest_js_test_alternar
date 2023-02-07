@@ -1,12 +1,19 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { AlternarController } from './controllers/alternar.controller';
+import { AlternarService } from './services/alternar.service';
 
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CoreTypeOrmConfigService } from './config/database.config';
 import { RepositoryModule } from './repositories/repository.module';
-import { BcryptRepositoryService } from './repositories/services';
+import {
+  BcryptRepositoryService,
+  BetRepositoryService,
+  PlayerRepositoryService,
+  SessionRepositoryService,
+} from './repositories/services';
+import { HttpModule } from '@nestjs/axios';
+import { PingController } from './controllers/ping.controller';
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
@@ -15,10 +22,16 @@ import { BcryptRepositoryService } from './repositories/services';
       inject: [ConfigService],
       useClass: CoreTypeOrmConfigService,
     }),
-    RepositoryModule.forFeature([BcryptRepositoryService]),
+    RepositoryModule.forFeature([
+      BcryptRepositoryService,
+      SessionRepositoryService,
+      PlayerRepositoryService,
+      BetRepositoryService,
+    ]),
+    HttpModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [AlternarController, PingController],
+  providers: [AlternarService],
 })
 export class AppModule {
   static port: number;
