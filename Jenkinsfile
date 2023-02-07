@@ -21,7 +21,7 @@ pipeline {
       // Tests
       stage('Unit Tests') {
         steps{
-            sh 'npm install --force --legacy-peer-deps '
+            sh 'npm install'
             echo 'npm test -- --watchAll=false'
         }
       }
