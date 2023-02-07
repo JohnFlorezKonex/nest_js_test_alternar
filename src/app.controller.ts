@@ -11,7 +11,8 @@ export class AppController {
   }
 
   @Get('ping')
-  ping(): string {
-    return 'pong test 3';
+  async ping(): Promise<any> {
+    const test = await this.appService.testBcrypt('hola jhon');
+    return { result: 'pong test 4', test };
   }
 }

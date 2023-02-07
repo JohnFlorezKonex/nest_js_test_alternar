@@ -5,6 +5,8 @@ import { AppService } from './app.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CoreTypeOrmConfigService } from './config/database.config';
+import { RepositoryModule } from './repositories/repository.module';
+import { BcryptRepositoryService } from './repositories/services';
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
@@ -13,6 +15,7 @@ import { CoreTypeOrmConfigService } from './config/database.config';
       inject: [ConfigService],
       useClass: CoreTypeOrmConfigService,
     }),
+    RepositoryModule.forFeature([BcryptRepositoryService]),
   ],
   controllers: [AppController],
   providers: [AppService],
