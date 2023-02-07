@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-// import { AlternarController } from './controllers/alternar.controller';
-// import { AlternarService } from './services/alternar.service';
+import { AlternarController } from './controllers/alternar.controller';
+import { AlternarService } from './services/alternar.service';
 
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -31,14 +31,8 @@ import { PingService } from './services/ping.service';
     ]),
     HttpModule,
   ],
-  controllers: [
-    // AlternarController,
-    PingController,
-  ],
-  providers: [
-    // AlternarService,
-    PingService,
-  ],
+  controllers: [AlternarController, PingController],
+  providers: [AlternarService, PingService],
 })
 export class AppModule {
   static port: number;
