@@ -11,10 +11,6 @@ export class PingService {
       'https://rickandmortyapi.com/api/character',
     );
     const result = (await lastValueFrom(test)).data;
-    console.log(
-      '🚀 ~ file: alternar.service.ts:468 ~ AlternarService ~ result ~ result',
-      result,
-    );
     return result;
   }
 }
